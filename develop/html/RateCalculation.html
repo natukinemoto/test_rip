@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/Base.css">
+    <link rel="stylesheet" href="../css/RateCalculation.css">
+    <title>税率計算</title>
+</head>
+
+<body>
+    <header>
+        <!-- ヘッダー内タイトル表示 -->
+        <ul class="Header_lists" id="Header_btn">
+            <li class="Header_lists_leftChild" id="Header_btn_leftChild">Mainmenu</li>
+            <li class="Header_lists_rightChild" id="Header_btn_rightChild1">RateCalculation<span id="Id_border_child1" class="Border_transform"></span></li>
+            <li class="Header_lists_rightChild" id="Header_btn_rightChild2">function2<span id="Id_border_child2" class="Border_transform"></span></li>
+            <li class="Header_lists_rightChild" id="Header_btn_rightChild3">function3<span id="Id_border_child3" class="Border_transform"></span></li>
+            <li class="Header_lists_rightChild" id="Header_btn_rightChild4">function4<span id="Id_border_child4" class="Border_transform"></span></li>
+        </ul>
+        <script src="../js/Base.js"></script>
+        <script src="../js/PageShift.js"></script>
+    </header>
+    <span id="id_border_adult" class="Border_transform_adult"></span>
+
+    <!-- 税率計算入力フォーム -->
+    <ul class="Calc_lists">
+        <form name="Calc_tax" id="id_Calc_tax" action="" method=""></form>
+        <li class="Calc_lists_child" id="id_Calc_lists_child"><input type="text" class="Calc_input" id="id_Calc_input" placeholder="price" maxlength="12" name="Calc_tax_value"><span id="id_Calc_input_border" class="Calc_input_border"></span></li>
+        <li class="Calc_lists_child">
+            <ul class="Calc_lists_col" id="id_Calc_lists_child_col">
+                <li class="Calc_lists_child_col" id="id_Calc_lists_child_col1">区分選択なし</li>
+                <li class="Calc_lists_child_col" id="id_Calc_lists_child_col2">食料品</li>
+                <li class="Calc_lists_child_col" id="id_Calc_lists_child_col3">その他</li>
+            </ul>
+        </li>
+        <li class="Calc_lists_child_answer" id="Calc_tax_answer"></li>
+    </ul>
+    <script src="../js/RateCalculation.js"></script>
+    
+    <div class="Calc_alert"  id="id_Calc_alert">
+        <div class="Calc_alert_col">error : 入力エラーです、半角数字で入力してください。</div>
+    </div>
+
+    <footer>
+        <div class="Footer_lists">
+            <div class="Footer_lists_main">
+                🄫 All rights reserved 2020 natsuki.nemoto
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
