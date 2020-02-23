@@ -154,12 +154,12 @@ count_img = 0;
     function Change_img_go(){
         if (count_img == glass_img.length-1){
             document.getElementById("id_Main_img").src = glass_img[count_img];
-            setTimeout( "Change_img()" , 96);
+            setTimeout( "Change_img()" , 144);
             switch_img = 1;
         }else{
             count_img++;
             document.getElementById("id_Main_img").src = glass_img[count_img];
-            setTimeout( "Change_img()" , 96);
+            setTimeout( "Change_img()" , 144);
         }
         
     }
@@ -170,12 +170,12 @@ count_img = 0;
             count_img = 1;
             switch_img = 2;
             document.getElementById("id_Main_img").src = glass_img[count_img];
-            setTimeout( "Change_img()" , 96);
+            setTimeout( "Change_img()" , 144);
         }else{
             
             count_img--;
             document.getElementById("id_Main_img").src = glass_img[count_img];
-            setTimeout( "Change_img()" , 96);
+            setTimeout( "Change_img()" , 144);
         }
         
     }
