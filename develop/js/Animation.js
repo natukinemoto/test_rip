@@ -1,7 +1,9 @@
 /* animation初期設定 */
 window.addEventListener("load", function(){
     glass_img = new Array();
-    for(i = 1; i < 305; i++){
+
+    /* pngの枚数分ループ処理 */
+    for(let i = 1; i < 305; i++){
     glass_img[i] = "../png/glass (" + i + ").png";
 }
     document.getElementById("id_Body_lists_leftChild2").className = "Body_lists_leftChild2_active";
@@ -147,8 +149,8 @@ function counter2(){
     */
 
 /* 各種変数  switch=0で前進,1で後進,2で停止　countでpngフォルダの画像を配列に格納*/
-switch_img = 0;
-count_img = 0;
+var switch_img = 0;
+var count_img = 0;
 
 /*　画像コマ送り(前進) */
     function Change_img_go(){
