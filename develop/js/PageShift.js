@@ -9,7 +9,7 @@ document.getElementById("Header_btn_rightChild1").addEventListener("click", func
 },false);
 
 document.getElementById("Header_btn_rightChild2").addEventListener("click", function(){
-    window.location.href = "../html/Function.html";
+    window.location.href = "../html/BaseBall.html";
 },false);
 
 document.getElementById("Header_btn_rightChild3").addEventListener("click", function(){

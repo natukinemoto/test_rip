@@ -1,0 +1,225 @@
+/* 範囲選択背景色変更 */
+::selection{
+    opacity: 0;
+}
+
+/* メインデザイン枠 */
+.game_box{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    word-break: break-all;
+    margin: 32px 16px 32px 16px;
+    padding: 32px 16px 32px 16px;
+}
+
+/* PlayBallボタン装飾 */
+.game_start{
+    border-radius: 30px;
+    background: #501c23;
+    text-align: center;
+    font-size: 64px;
+    margin: 0 auto;
+    padding: 32px 16px 32px 16px;
+    color: white;
+    cursor: pointer;
+    translate: 1s;
+}
+
+.game_start_action{
+    border-radius: 30px;
+    background: #501c23;
+    text-align: center;
+    font-size: 64px;
+    margin: 0 auto;
+    padding: 32px 16px 32px 16px;
+    color: white;
+    cursor: pointer;
+    animation-name: bottom_action;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+}
+
+.game_box .result{
+    border-radius: 30px;
+    background: #501c23;
+    text-align: center;
+    font-size: 64px;
+    margin: 0 auto;
+    padding: 32px 16px 32px 16px;
+    color: white;
+    cursor: pointer;
+    animation-name: result_action;
+    animation-iteration-count: 1;
+    animation-duration: 1.5s;
+}
+
+@keyframes bottom_action{
+    0%{
+        color: #00ffd0;
+    }
+    20%{
+        color: #ff3300;
+    }
+    40%{
+        color: #cc00ff;
+    }
+    60%{
+        color: #ff006a;
+    }
+    80%{
+        color: #ffae00;
+    }
+    100%{
+        color: #33ff00;
+    }
+}
+
+@keyframes result_action{
+    0%{
+        color: #501c23;
+        transform: scaleX(1);
+    }
+    50%{
+        color: #501c23;
+        transform: scaleX(0.5) rotatex(-90deg);
+        opacity: 0;
+    }
+    100%{
+        transform: scaleX(1) rotatex(0deg);
+        opacity: 0;
+    }
+}
+
+/* バッター&ピッチャーPOW選択 */
+.game_box .section_list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    word-break: break-all;
+    margin: 8px 8px 8px 8px;
+    padding: 16px 16px 16px 16px;
+}
+
+.game_box .select_name_list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    word-break: normal;
+}
+
+.game_box .select_name_list .names{
+    display: flex;
+    font-size: 32px;
+    margin: 16px 16px 0px 16px;
+    color: white;
+    cursor: pointer;
+}
+
+.game_box .section_list .batter{
+    display: flex;
+    font-size: 32px;
+    margin: 0px 16px 0px 0px;
+    padding: 8px 16px 8px 16px;
+    color: white;
+    cursor: pointer;
+}
+
+.game_box .section_list .batter .left_action{
+    display: flex;
+    font-size: 32px;
+    cursor: pointer;
+    animation-name: left_action;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+}
+
+.game_box .section_list .batter .right_action{
+    display: flex;
+    font-size: 32px;
+    cursor: pointer;
+    animation-name: right_action;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+}
+
+@keyframes left_action{
+    0%{
+        transform: translate(0%)
+    }
+    50%{
+        color: red;
+        transform: translate(-30%)
+    }
+    100%{
+        transform: translate(0%)
+    }
+}
+
+@keyframes right_action{
+    0%{
+        transform: translate(0%)
+    }
+    50%{
+        color: blue;
+        transform: translate(30%)
+    }
+    100%{
+        transform: translate(0%)
+    }
+}
+
+.game_box .section_list .pitcher{
+    display: flex;
+    font-size: 32px;
+    margin: 0px 0px 0px 16px;
+    padding: 8px 16px 8px 16px;
+    color: white;
+    cursor: pointer;
+}
+
+.game_box .section_list .pitcher .left_action{
+    display: flex;
+    font-size: 32px;
+    cursor: pointer;
+    animation-name: left_action;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+}
+
+.game_box .section_list .pitcher .right_action{
+    display: flex;
+    font-size: 32px;
+    cursor: pointer;
+    animation-name: right_action;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+}
+
+/* ストライク、ボール表示設定 */
+.game_box .strike{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    word-break: break-all;
+    color: #dada00;
+    font-size: 24px;
+    margin: 8px 16px 8px 16px;
+    padding: 0px 16px 0px 16px;
+}
+
+.game_box .ball{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    word-break: break-all;
+    color: #00e200;
+    font-size: 24px;
+    margin: 8px 16px 8px 16px;
+    padding: 0px 16px 0px 16px;
+}
