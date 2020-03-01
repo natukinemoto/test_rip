@@ -1,0 +1,312 @@
+/* ピッチャーゾーン設定 */
+.stage{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    word-break: break-all;
+    margin: 16px 16px 16px 16px;
+    padding: 16px 16px 16px 16px;
+}
+
+.stage .section{
+    margin: 16px 0px 16px 0px;
+}
+
+.stage .section .pitcher{
+    margin: 0 auto;
+    width: 200px;
+    font-size: 64px;
+    color: #050753;
+    z-index: 1;
+    transform: translate(100px, 340px);
+}
+
+.stage .section .pitcher_action{
+    margin: 0 auto;
+    width: 200px;
+    font-size: 64px;
+    color: #050753;
+    z-index: 1;
+    transform: translate(100px, 340px);
+    animation-name: pitcher_action;
+    animation-iteration-count: 1;
+    animation-duration: 1s;
+}
+
+@keyframes pitcher_action{
+    0%{
+        transform: translate(100px, 340px);
+    }
+    50%{
+        transform: translate(100px, 340px) rotateX(-45deg) rotateY(45deg);
+    }
+    100%{
+        transform: translate(100px, 340px);
+    }
+}
+
+.stage .section .ball{
+    border-radius: 200px;
+    background: white;
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+    z-index: 2;
+    transform: translateY(180px) scale(0.05, 0.05);
+    transition: 0s;
+    opacity: 0;
+    animation-name: ball_action;
+    animation-iteration-count: infinite;
+    animation-duration: 0s;
+}
+
+.stage .section .ball_action{
+    border-radius: 200px;
+    background: white;
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+    z-index: 2;
+    transform: translateY(180px) scale(0.05, 0.05);
+    transition: 1.5s;
+    opacity: 0;
+    animation-name: ball_action;
+    animation-iteration-count: infinite;
+    animation-duration: 0s;
+}
+
+@keyframes ball_action{
+    0%{
+        transform: translateY(40px) scale(0.05, 0.05);
+    }
+    50%{
+        transform: translateY(40px) scale(0.1, 0.1);
+    }
+    100%{
+        transform: translate(180px, 140px) scale(0.2, 0.2);
+    }
+}
+
+/* ストライクゾーン設定 */
+table{
+    position: relative;
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+    transform: translate(0px, -50px) scale(2, 2);
+    border: solid 2px white;
+    opacity: 0.5;
+    background: #f8765f;
+}
+
+table td{
+    border: solid 2px white;
+    background: #a8ff85;
+}
+
+.stage .section .strike_zone{
+    padding: 32px 32px 32px 32px;
+}
+
+/* バッターゾーン設定 */
+.stage .batter{
+    opacity: 0;
+    position: relative;
+    margin: 0 auto;
+    background: #61400f;
+    width: 50px;
+    height: 100px;
+    z-index: 3;
+    transition: 1.0s;
+    transform-origin: 50% 100%;
+    transform: translate(-300px, -314px) scale(0, 0);
+    border-radius: 200px 200px 300px 300px / 200px 200px 600px 600px;
+}
+
+.stage .batter_figure{
+    opacity: 1;
+    position: relative;
+    margin: 0 auto;
+    background: #61400f;
+    width: 50px;
+    height: 80px;
+    z-index: 3;
+    transition: 1s;
+    transform-origin: 50% 100%;
+    transform: translate(-300px, -394px) rotate(0deg) scale(1, 4.5);
+    border-radius: 200px 200px 300px 300px / 200px 200px 600px 600px;
+    animation-name: shake;
+    animation-iteration-count: infinite;
+    animation-duration: 3s;
+}
+
+.stage .batter_figure_action{
+    opacity: 1;
+    position: relative;
+    margin: 0 auto;
+    background: #61400f;
+    width: 50px;
+    height: 80px;
+    z-index: 3;
+    transition: 1s;
+    transform-origin: 50% 100%;
+    transform: translate(-300px, -394px) scale(1, 4.5);
+    border-radius: 200px 200px 300px 300px / 200px 200px 600px 600px;
+    animation-name: shake_action;
+    animation-iteration-count: 1;
+    animation-duration: 0.5s;
+}
+
+@keyframes shake{
+    0%{
+        transform: translate(-300px, -394px) rotate(-35deg) scale(1, 4.5);
+    }
+    50%{
+        transform: translate(-300px, -394px) rotate(0deg) scale(1, 4.5);
+    }
+    100%{
+        transform: translate(-300px, -394px) rotate(-35deg) scale(1, 4.5);
+    }
+}
+
+@keyframes shake_action{
+    0%{
+        transform: translate(-300px, -394px) rotate(0deg) scale(1, 4.5);
+    }
+    50%{
+        transform: translate(-300px, -394px) rotate(-45deg) scale(1, 4.5);
+    }
+    100%{
+        opacity: 0.4;
+        transform: translate(-300px, -394px) rotate(-310deg) scale(1, 7);
+    }
+}
+
+.stage .ng{
+    opacity: 0.5;
+    position: relative;
+    margin: 0 auto;
+    width: 200px;
+    height: 100px;
+    z-index: 4;
+    transition: 1s;
+    transform-origin: 50% 100%;
+    transform: translate(-300px, -214px) scale(1, 4);
+}
+
+/* ゲームプレイボタン制御 */
+.stage .play{
+    position: relative;
+    margin: 0 auto;
+    font-size: 64px;
+    z-index: 4;
+    padding: 0 24px 0 24px;
+    background: #501c23;
+    color: white;
+    cursor: pointer;
+    transition: 1s;
+    border-radius: 20px;
+    transform: translate(0px, -250px) rotate(0deg);
+}
+
+.stage .play_action{
+    position: relative;
+    margin: 0 auto;
+    font-size: 64px;
+    z-index: 4;
+    padding: 0 24px 0 24px;
+    background: #501c23;
+    color: white;
+    animation-name: play_action;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-duration: 1s;
+    cursor: pointer;
+}
+
+@keyframes play_action{
+    0%{
+        transform: translate(0px, -250px) rotate(0deg);
+    }
+    50%{
+        transform: translate(0px, -250px) rotate(0deg) scale(2, 0);
+    }
+    100%{
+        transform: translate(0px, -250px) rotateX(90deg) scale(0, 0);
+    }
+}
+
+/* カラーランプ制御 */
+.stage .red_lamp{
+    position: relative;
+    margin: 0 auto;
+    width: 2px;
+    height: 2px;
+    background: #ff7777;
+    border-radius: 2px;
+    transform: translate(-150px, -980px) scale(20, 20);
+}
+
+.stage .green_lamp{
+    position: relative;
+    margin: 0 auto;
+    width: 2px;
+    height: 2px;
+    background: #81ff81;
+    border-radius: 2px;
+    transform: translate(-150px, -980px) scale(20, 20);
+}
+
+.stage .yellow_lamp{
+    position: relative;
+    margin: 0 auto;
+    width: 2px;
+    height: 2px;
+    background: #fff67e;
+    border-radius: 2px;
+    transform: translate(-150px, -980px) scale(20, 20);
+}
+
+/* HIT数表示制御 */
+.stage .hit{
+    position: relative;
+    margin: 0 auto;
+    width: 20px;
+    height: 2px;
+    text-align: center;
+    color: white;
+    transform: translate(330px, -800px) scale(5, 5);
+}
+
+.stage .hit_write{
+    position: relative;
+    margin: 0 auto;
+    width: 30px;
+    height: 2px;
+    transform: translate(330px, -950px) scale(5, 5);
+    animation-name: action;
+    animation-iteration-count: infinite;
+    animation-duration: 0.5s;
+}
+
+@keyframes action{
+    0%{
+        color: #00ffd0;
+    }
+    20%{
+        color: #ff3300;
+    }
+    40%{
+        color: #cc00ff;
+    }
+    60%{
+        color: #ff006a;
+    }
+    80%{
+        color: #ffae00;
+    }
+    100%{
+        color: #33ff00;
+    }
+}
