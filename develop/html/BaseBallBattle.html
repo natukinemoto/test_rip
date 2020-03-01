@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../css/Base.css">
+        <link rel="stylesheet" href="../css/BaseBallBattle.css">
+        <title>BaseBallBattle</title>
+    </head>
+    <body>
+        <header>
+            <!-- ヘッダー内タイトル表示 -->
+        <ul class="Header_lists" id="Header_btn">
+            <li class="Header_lists_leftChild" id="Header_btn_leftChild">Mainmenu</li>
+            <li class="Header_lists_rightChild" id="Header_btn_rightChild1">RateCalculation<span id="Id_border_child1" class="Border_transform"></span></li>
+            <li class="Header_lists_rightChild" id="Header_btn_rightChild2">BaseBall<span id="Id_border_child2" class="Border_transform"></span></li>
+            <li class="Header_lists_rightChild" id="Header_btn_rightChild3">function3<span id="Id_border_child3" class="Border_transform"></span></li>
+            <li class="Header_lists_rightChild" id="Header_btn_rightChild4">function4<span id="Id_border_child4" class="Border_transform"></span></li>
+        </ul>
+        <script src="../js/PageShift.js"></script>
+        <script src="../js/Base.js"></script>
+        </header>
+
+        <main>
+            <article class="stage">
+                <section class="section">
+                    <div class="pitcher" id="pitcherAction">大</div>
+                    <div class="ball" id="ballStyle"></div>
+                </section>
+                <section class="section">
+                    <div>
+                        <table class="strike_zone" id="strikeZone">
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
+            </article>
+            <article class="stage">
+                <div class="batter" id="batterStyle"></div>
+                <div class="batter_figure" id="batterFigure"></div>
+                <div class="ng"></div>
+            </article>
+            <article  class="stage">
+                <div class="play" id="playGame">Play!!</div>
+            </article>
+            <article  class="stage" id="redLamp">
+            </article>
+            <article  class="stage" id="greenLamp">
+            </article>
+            <article  class="stage" id="yellowLamp">
+            </article>
+            <article class="stage" id="hit">
+            </article>
+            <article class="stage" id="hitWrite">
+            </article>
+            <script src="../js/BaseBallBattle.js"></script>
+        </main>
+        <footer>
+            <div class="Footer_lists">
+                <div class="Footer_lists_main">
+                    🄫 All rights reserved 2020 natsuki.nemoto
+                </div>
+            </div>
+        </footer>
+    </body>
+
+</html>

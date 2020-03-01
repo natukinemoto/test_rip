@@ -13,7 +13,7 @@ document.getElementById("Header_btn_rightChild2").addEventListener("click", func
 },false);
 
 document.getElementById("Header_btn_rightChild3").addEventListener("click", function(){
-    window.location.href = "../html/Function.html";
+    window.location.href = "../html/BaseBallBattle.html";
 },false);
 
 document.getElementById("Header_btn_rightChild4").addEventListener("click", function(){
