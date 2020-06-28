@@ -1,157 +1,352 @@
-/* 初期設定input装飾処理 */
+//#region === 画面装飾初期設定 ===
+/* 初期設定(input)装飾処理 */
 window.onload = function(){
-    document.getElementById("id_Calc_input_border").className = "Calc_input_border_active";
-    document.getElementById("id_Calc_lists_child_col1").className = "Calc_lists_col_active";
-    document.getElementById("id_Calc_input").onpaste = function(){return false;};
-    document.getElementById("id_Calc_input").value = null;
-    document.getElementById("Calc_tax_answer").innerHTML = 0;
+    document.getElementById("inputBorder").className = "border_active";
+    document.getElementById("none").className = "active";
+    document.getElementById("input").onpaste = function(){return false;};
+    document.getElementById("input").value = null;
+    document.getElementById("calcAnswer").innerHTML = 0 + currency;
+    document.getElementById("taxAnswer").style.display = "none";
+    document.getElementById("CashAnswer").style.display = "none";
 }
+//#endregion
 
+//#region === 変数定義(初期化) ===
 /* 選択区分制御 */
 /* 表示制御用変数 col = 0; col = 1; 0がON; 1がOFF */
-let col = 0;
-/* 税率計算用変数 選択なしrattax = 0; 食料品rattax = 1; その他rattax = 2 */
-let ratetax = 0;
+let col = 1;
+/* 税率計算用変数 選択なしrateTax = 1; 食料品rateTax = 1.08; その他rateTax = 1.1 */
+let rateTax = 1;
+const rateNone = 1;
+const rateFood = 1.08;
+const rateOther = 1.1;
+/* 税率計算結果用変数 */
+let taxAnswer = 0;
+/* 通貨単位表示用変数 */
+const currency = " " + "円" + " (総計)";
+const currencyNone = " " + "円";
+// キャッシュバック制御
+// キャッシュバック率変数
+const rateCash = 1.02;
+// キャッシュバック計算結果用変数
+let cashAnswer = 0;
+// キャッシュバック表示用変数 creditCol = 0(OFF), 1(ON);
+let creditCol = 0;
+// 総計
+let calcAnswer = 0;
+//#endregion
 
+//#region === 税率区分選択(ボタン表示切り替え) ===
 /* 税率区分選択 */
-document.getElementById("id_Calc_lists_child_col1").onmouseover = function(){
+/* 区分選択なし */
+document.getElementById("none").onmouseover = function(){
     if(col == 0){
-        document.getElementById("id_Calc_lists_child_col1").className = "Calc_lists_col_active";
-        document.getElementById("id_Calc_lists_child_col2").className = "Calc_lists_child_col";
-        document.getElementById("id_Calc_lists_child_col3").className = "Calc_lists_child_col";
+        document.getElementById("none").className = "active";
+        document.getElementById("food").className = "invalid";
+        document.getElementById("other").className = "invalid";
     }
 }
-document.getElementById("id_Calc_lists_child_col1").onmouseout = function(){
+document.getElementById("none").onmouseout = function(){
     if(col == 0){
-        document.getElementById("id_Calc_lists_child_col1").className = "Calc_lists_child_col";
+        document.getElementById("none").className = "invalid";
     }
 }
-document.getElementById("id_Calc_lists_child_col1").onclick = function(){
+document.getElementById("none").onclick = function(){
+    // 要素を非表示
+    document.getElementById("taxAnswer").style.display = "none";
+    document.getElementById("CashAnswer").style.display = "none";
+    
     if(col == 1){
-        document.getElementById("id_Calc_lists_child_col1").className = "Calc_lists_col_active";
-        document.getElementById("id_Calc_lists_child_col2").className = "Calc_lists_child_col";
-        document.getElementById("id_Calc_lists_child_col3").className = "Calc_lists_child_col";
+        document.getElementById("none").className = "active";
+        document.getElementById("food").className = "invalid";
+        document.getElementById("other").className = "invalid";
         col = 1;
-        ratetax = 0;
-        var taxcalc = document.getElementById("id_Calc_input").value;
-        taxanswer = Math.round(taxcalc * 1);
-        document.getElementById("Calc_tax_answer").innerHTML = taxanswer;
+        rateTax = rateNone;
+        getTaxRate(rateTax);
     }else{
-        document.getElementById("id_Calc_lists_child_col1").className = "Calc_lists_col_active";
+        document.getElementById("none").className = "active";
         col = 1;
-        ratetax = 0;
-        var taxcalc = document.getElementById("id_Calc_input").value;
-        taxanswer = Math.round(taxcalc * 1);
-        document.getElementById("Calc_tax_answer").innerHTML = taxanswer;
+        rateTax = rateNone;
+        getTaxRate(rateTax);
     }
+
+    // 総計(税込み＋キャッシュバック)
+    cashAnswer = 0;
+    getCalc();
 }
 
 /* 食料品 */
-document.getElementById("id_Calc_lists_child_col2").onmouseover = function(){
+document.getElementById("food").onmouseover = function(){
     if(col == 0){
-        document.getElementById("id_Calc_lists_child_col1").className = "Calc_lists_child_col";
-        document.getElementById("id_Calc_lists_child_col2").className = "Calc_lists_col_active";
-        document.getElementById("id_Calc_lists_child_col3").className = "Calc_lists_child_col";
+        document.getElementById("none").className = "invalid";
+        document.getElementById("food").className = "active";
+        document.getElementById("other").className = "invalid";
     }
 }
-document.getElementById("id_Calc_lists_child_col2").onmouseout = function(){
+document.getElementById("food").onmouseout = function(){
     if(col == 0){
-        document.getElementById("id_Calc_lists_child_col2").className = "Calc_lists_child_col";
+        document.getElementById("food").className = "invalid";
     }
 }
-document.getElementById("id_Calc_lists_child_col2").onclick = function(){
+document.getElementById("food").onclick = function(){
+    // 要素を画面(非)表示
+    document.getElementById("taxAnswer").style.display = "block";
+    document.getElementById("CashAnswer").style.display = "none";
+
     if(col == 1){
-        document.getElementById("id_Calc_lists_child_col1").className = "Calc_lists_child_col";
-        document.getElementById("id_Calc_lists_child_col2").className = "Calc_lists_col_active";
-        document.getElementById("id_Calc_lists_child_col3").className = "Calc_lists_child_col";
+        document.getElementById("none").className = "invalid";
+        document.getElementById("food").className = "active";
+        document.getElementById("other").className = "invalid";
         col = 1;
-        ratetax = 1;
-        var taxcalc = document.getElementById("id_Calc_input").value;
-        taxanswer = Math.round(taxcalc * 1.08);
-        document.getElementById("Calc_tax_answer").innerHTML = taxanswer;
+        rateTax = rateFood;
+        getTaxRate(rateTax);
     }else{
-        document.getElementById("id_Calc_lists_child_col2").className = "Calc_lists_col_active";
+        document.getElementById("food").className = "active";
         col = 1;
-        ratetax = 1;
-        var taxcalc = document.getElementById("id_Calc_input").value;
-        taxanswer = Math.round(taxcalc * 1.08);
-        document.getElementById("Calc_tax_answer").innerHTML = taxanswer;
+        rateTax = rateFood;
+        getTaxRate(rateTax);
     }
+
+    // 総計(税込み＋キャッシュバック)
+    cashAnswer = 0;
+    getCalc();
 }
 
 /* その他 */
-document.getElementById("id_Calc_lists_child_col3").onmouseover = function(){
+document.getElementById("other").onmouseover = function(){
     if(col == 0){
-        document.getElementById("id_Calc_lists_child_col1").className = "Calc_lists_child_col";
-        document.getElementById("id_Calc_lists_child_col2").className = "Calc_lists_child_col";
-        document.getElementById("id_Calc_lists_child_col3").className = "Calc_lists_col_active";
+        document.getElementById("none").className = "invalid";
+        document.getElementById("food").className = "invalid";
+        document.getElementById("other").className = "active";
     }
 }
-document.getElementById("id_Calc_lists_child_col3").onmouseout = function(){
+document.getElementById("other").onmouseout = function(){
     if(col == 0){
-        document.getElementById("id_Calc_lists_child_col3").className = "Calc_lists_child_col";
+        document.getElementById("other").className = "invalid";
     }
 }
-document.getElementById("id_Calc_lists_child_col3").onclick = function(){
-    if(col == 1){
-        document.getElementById("id_Calc_lists_child_col1").className = "Calc_lists_child_col";
-        document.getElementById("id_Calc_lists_child_col2").className = "Calc_lists_child_col";
-        document.getElementById("id_Calc_lists_child_col3").className = "Calc_lists_col_active";
-        col = 1;
-        ratetax = 2;
-        var taxcalc = document.getElementById("id_Calc_input").value;
-        taxanswer = Math.round(taxcalc * 1.1);
-        document.getElementById("Calc_tax_answer").innerHTML = taxanswer;
-    }else{
-        document.getElementById("id_Calc_lists_child_col3").className = "Calc_lists_col_active";
-        col = 1;
-        ratetax = 2;
-        var taxcalc = document.getElementById("id_Calc_input").value;
-        taxanswer = Math.round(taxcalc * 1.1);
-        document.getElementById("Calc_tax_answer").innerHTML = taxanswer;
-    }
-}
+document.getElementById("other").onclick = function(){
+    // 要素を画面表示
+    document.getElementById("taxAnswer").style.display = "block";
 
-/* 税率計算入力フォームロジック */
-document.getElementById("id_Calc_input").addEventListener("keyup", function(){
+    if(col == 1){
+        document.getElementById("none").className = "invalid";
+        document.getElementById("food").className = "invalid";
+        document.getElementById("other").className = "active";
+        col = 1;
+        rateTax = rateOther;
+
+        // キャッシュバック計算
+        if(creditCol == 1){
+            // 要素を画面表示
+            document.getElementById("CashAnswer").style.display = "block";
+            getCashBack();
+        }
+
+        // 税率計算
+        getTaxRate(rateTax);
+    }else{
+        document.getElementById("other").className = "active";
+        col = 1;
+        rateTax = rateOther;
+
+        // キャッシュバック計算
+        if(creditCol == 1){
+            // 要素を画面表示
+            document.getElementById("CashAnswer").style.display = "block";
+
+            getCashBack();
+        }
+
+        // 税率計算
+        getTaxRate(rateTax);
+    }
+
+    // 総計(税込み＋キャッシュバック)
+    getCalc();
+}
+//#endregion
+
+//#region === 税率計算ロジック ===
+/* 税率初期入力値計算(画面表示) */
+document.getElementById("input").addEventListener("keyup", function(event){
     /* 入力値を変数に格納 */
-    var taxcalc = document.getElementById("id_Calc_input").value;
+    var taxCalc = document.getElementById("input").value;
 
     /* 正規表現：半角数字のみ許容,先頭が0を非許容 */
     var regex = /^([1-9]\d*|0)$/;
     var regex2 = /[A-Za-z-!"#$%&'()=<>,.?_\[\]{}@^~\\]/;
 
-    if(regex.test(taxcalc)){
-
+    // 入力チェック
+    // 正常値
+    if(regex.test(taxCalc))
+    {
+        // エラーメッセージリセット
         error_resetmsg()
 
         /* 食料品税率計算(roundで丸めることにより入力値100の際のバグ挙動等を回避) */
-        if(ratetax == 1){
-            taxanswer = Math.round(taxcalc * 1.08);
-            document.getElementById("Calc_tax_answer").innerHTML = taxanswer;
+        if(rateTax == rateFood){
+            getTaxRate(rateTax);
         }
-        else if(ratetax == 2){
-            taxanswer = Math.round(taxcalc * 1.1);
-            document.getElementById("Calc_tax_answer").innerHTML = taxanswer;
+        /* その他税率計算(roundで丸めることにより入力値100の際のバグ挙動等を回避) */
+        else if(rateTax == rateOther){
+            getTaxRate(rateTax);
+
+            // クレジット決済選択時(キャッシュバック計算)
+            if(creditCol == 1){
+                getCashBack();
+            }
         }
-        else if(ratetax == 0){
-            taxanswer = Math.round(taxcalc * 1);
-            document.getElementById("Calc_tax_answer").innerHTML = taxanswer;
+        /* 選択なし税率計算(roundで丸めることにより入力値100の際のバグ挙動等を回避) */
+        else if(rateTax == rateNone){
+            getTaxRate(rateTax);
         }
+
+        // 総計(税込み＋キャッシュバック)
+        getCalc();
     }
-    else{
+    // エラーチェック
+    // 入力欄空白エラー
+    else if(taxCalc == "")
+    {
+        // 要素を画面非表示
+        document.getElementById("CashAnswer").style.display = "none";
 
         /* 入力出力欄初期化 */
-        document.getElementById("id_Calc_input").value = null;
-        document.getElementById("Calc_tax_answer").innerHTML = 0;
+        taxAnswer = 0;
+        calcAnswer = 0;
+
+        const ErrorMsg = new Error("Er0002");
         error_msg();
+        document.getElementById("errorMsg").innerHTML = ErrorMsg.ErrorMessage();
+
+        document.getElementById("calcAnswer").innerHTML = calcAnswer + currency;
+    }
+    // 10進数外入力エラー
+    else if(taxCalc == 00){
+        // 要素を画面非表示
+        document.getElementById("CashAnswer").style.display = "none";
+
+        /* 入力出力欄初期化 */
+        taxCalc = document.getElementById("input").value = null;
+        taxAnswer = 0;
+        calcAnswer = 0;
+        document.getElementById("taxAnswer").innerHTML = 0 + currency;
+
+        const ErrorMsg = new Error("Er0003");
+        error_msg();
+        document.getElementById("errorMsg").innerHTML = ErrorMsg.ErrorMessage();
+
+        document.getElementById("calcAnswer").innerHTML = calcAnswer + currency;
+    }
+    // 半角数字以外エラー
+    else
+    {
+        // 要素を画面非表示
+        document.getElementById("CashAnswer").style.display = "none";
+
+        /* 入力出力欄初期化 */
+        taxCalc = document.getElementById("input").value = null;
+        taxAnswer = 0;
+        calcAnswer = 0;
+        document.getElementById("taxAnswer").innerHTML = 0 + currency;
+
+        const ErrorMsg = new Error("Er0001");
+        error_msg();
+        document.getElementById("errorMsg").innerHTML = ErrorMsg.ErrorMessage();
+
+        document.getElementById("calcAnswer").innerHTML = calcAnswer + currency;
     }
 },false);
 
+// 税率計算
+function getTaxRate(rate){
+    var taxCalc = document.getElementById("input").value;
+
+    if(!taxCalc){
+        document.getElementById("taxAnswer").innerHTML = "消費税：" + 0 + currencyNone;
+    }else{
+        taxAnswer = Math.round(taxCalc * rate) - taxCalc;
+        document.getElementById("taxAnswer").innerHTML = "消費税：" + taxAnswer + currencyNone;
+    }
+}
+//#endregion
+
+//#region === エラー表示(画面css切り替え) ===
 /* error表示 */
 function error_msg(){
-    document.getElementById("id_Calc_alert").className = "Calc_alert_active";
+    document.getElementById("alert").className = "alert";
 }
 function error_resetmsg(){
-    document.getElementById("id_Calc_alert").className = "Calc_alert";
+    document.getElementById("alert").className = "reset";
 }
+//#endregion
+
+//#region === キャッシュバック計算(切り替え)ロジック ===
+// キャッシュバック(画面表示)切替
+document.getElementById("credit").addEventListener("mouseover", function(){
+    if(creditCol == 0){
+        document.getElementById("credit").className = "active";
+    }
+},false);
+document.getElementById("credit").addEventListener("mouseout", function(){
+    if(creditCol == 0){
+        document.getElementById("credit").className = "invalid";
+    }
+},false);
+document.getElementById("credit").addEventListener("click", function(){
+    cashAnswer = 0;
+    if(creditCol == 0){
+        document.getElementById("credit").className = "active";
+        creditCol = 1;
+        
+        // 税率区分その他選択時(キャッシュバック計算)
+        if(rateTax == rateOther){
+            // 要素を画面表示
+            document.getElementById("CashAnswer").style.display = "block";
+
+            getCashBack();
+        }
+    }else{
+        // 要素を画面表示
+        document.getElementById("CashAnswer").style.display = "none";
+
+        document.getElementById("credit").className = "invalid";
+        creditCol = 0;
+        cashAnswer = 0;
+    }
+
+    // 総計(税込み＋キャッシュバック)
+    getCalc();
+},false);
+
+// キャッシュバック計算
+function getCashBack(){
+    // 要素を画面表示
+    document.getElementById("CashAnswer").style.display = "block";
+    /* 入力値を変数に格納 */
+    var taxCalc = document.getElementById("input").value;
+    // 入力された(税抜き)金額の2%がキャッシュバック
+    if(!taxCalc){
+        cashAnswer = Math.round(taxCalc * rateCash) - parseInt(0);
+        document.getElementById("CashAnswer").innerHTML = "キャッシュバック：" + cashAnswer + currencyNone;
+    }else{
+        cashAnswer = Math.round(taxCalc * rateCash) - parseInt(taxCalc);
+        document.getElementById("CashAnswer").innerHTML = "キャッシュバック：" + cashAnswer + currencyNone;
+    }
+}
+//#endregion
+
+//#region === 総計(税込み＋キャッシュバック) ===
+function getCalc(){
+    var taxCalc = document.getElementById("input").value;
+
+    if(!taxCalc){
+        calcAnswer = parseInt(0) + parseInt(taxAnswer) - parseInt(cashAnswer);
+        document.getElementById("calcAnswer").innerHTML = calcAnswer + currency;
+    }else{
+        calcAnswer = parseInt(taxCalc) + parseInt(taxAnswer) - parseInt(cashAnswer); 
+        document.getElementById("calcAnswer").innerHTML = calcAnswer + currency; 
+    }
+}
+//#endregion

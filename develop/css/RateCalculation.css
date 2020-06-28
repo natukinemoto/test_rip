@@ -1,5 +1,5 @@
 /* リスト表示設定 */
-.Calc_lists{
+.calc{
     display: flex;
     align-items: top;
     text-align: center;
@@ -8,7 +8,7 @@
     justify-content: space-between;
 }
 
-.Calc_lists_child{
+.calc .list{
     flex-grow: 1;
     color:white;
     margin: 64px 32px 16px 16px;
@@ -17,7 +17,7 @@
 }
 
 /* 税率ロジックリスト */
-.Calc_lists_col{
+.calc .list .col{
     display: flex;
     align-items: top;
     text-align: center;
@@ -26,7 +26,7 @@
     flex-direction: column;
 }
 
-.Calc_lists_child_col{
+.calc .list .col .invalid{
     flex-wrap: nowrap;
     flex-grow: 1;
     background: #501c23;
@@ -39,7 +39,7 @@
     transition: 1.5;
 }
 
-.Calc_lists_col_active{
+.calc .list .col .active{
     flex-wrap: nowrap;
     flex-grow: 1;
     background: #501c23;
@@ -52,7 +52,8 @@
     transition: 1.5;
 }
 
-.Calc_lists_child_answer{
+.calc .answer{
+    text-align: right;
     font-size: 28px;
     flex-grow: 1;
     color:white;
@@ -62,7 +63,7 @@
 }
 
 /* 入力欄制御 */
-.Calc_input{
+.calc .list .input{
     border: none;
     background-color:transparent;
     width: 100%;
@@ -71,7 +72,7 @@
     color: white;
 }
 
-.Calc_input_border{
+.calc .list .border{
     visibility: visible;
     display: flex;
     background-color: #747474;
@@ -81,7 +82,7 @@
     transition: 1.5s;
 }
 
-.Calc_input_border_active{
+.calc .list  .border_active{
     visibility: visible;
     display: flex;
     background-color: #501c23;
@@ -91,19 +92,25 @@
     transition: 1.5s;
 }
 
-.Calc_alert{
+.reset{
     display: none;
     text-align: center;
     margin:32px 0 0 0;
 }
 
-.Calc_alert_active{
+.alert{
     display: block;
     text-align: center;
     margin:32px 0 0 0;
 }
+.alert2{
+    display: block;
+    background: #cecf9f;
+    text-align: center;
+    margin:32px 0 0 0;
+}
 
-.Calc_alert_col{
+.input_error{
     width: 50%;
     background: #cecf9f;
     border: 1px solid #d10808;
