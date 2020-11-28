@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/Base.css">
+    <link rel="stylesheet" href="../css/HumanData.css">
+    <title>身体測定</title>
+</head>
+
+<body>
+    <iframe src="./Header.html" style="border: 0; overflow-y: hidden"></iframe>
+
+    <main>
+
+        <ul class="input">
+            <form name="" id="" action="" method=""></form>
+            <li class="measure">
+                <!-- 身長入力欄 -->
+                <input class="height" type="text" id="height" placeholder="heigth" maxlength="3">
+                <!-- 入力欄アンダーライン(画面デザイン) -->
+                <span class="border" id="border"></span>
+                <!-- 体重入力欄 -->
+                <input class="weight" type="text" id="weight" placeholder="weigth" maxlength="3">
+                <span class="border" id="border2"></span>
+            </li>
+            <script src="../js/HumanData.js"></script>
+
+            <!-- 「BMI:肥満度(体格指数)」結果表示 -->
+            <article class="answer">
+                <div>BMI(肥満度)</div>
+            </article>
+            <article class="answer">
+                <div id="answer"></div>
+            </article>
+        </ul>
+
+    </main>
+
+    <footer>
+        <!-- フッター内コピーライト表示 -->
+        <article class="Footer_lists">
+            <div class="Footer_lists_main">
+                🄫 All rights reserved 2020 natsuki.nemoto
+            </div>
+        </article>
+    </footer>
+</body>
+
+</html>
