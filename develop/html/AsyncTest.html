@@ -11,10 +11,29 @@
 <body>
     <main>
         <article>
+            <?php
+            $str = file_get_contents('https://www.sejuku.net/blog/');
+            echo $str;
+            echo file_get_contents($_GET['https://iss.ndl.go.jp/api/opensearch?cnt=10&title=空'])
+            echo "<p> file_get_contents($_GET['https://iss.ndl.go.jp/api/opensearch?cnt=10&title=空])</p>";
+            ?>
             <div><input type="button" id="clickBtn_1" value="成功通信ボタン"></div>
             <div id="result_1">通信前１</div></br>
             <div><input type="button" id="clickBtn_2" value="失敗通信ボタン"></div>
             <div id="result_2">通信前２</div>
+
+            <div><input type="text" id="inputUrl"></div>
+            <div><input type="button" id="urlSearchClick" value="URLのタイトルを取得します"></div>
+            <div id="resultUrlTitle">タイトル</div>
+            <div><input type="text" id="inputPost"></div>
+            <div><input type="button" id="postSearchClick" value="POSTを検索します"></div>
+            <div id="postUrlTitle">POST</div>
+            <div><input type="text" id="inputLibrary"></div>
+            <div><input type="button" id="librarySearchClick" value="書籍を検索します"></div>
+            <div id="libraryUrlTitle">書籍</div>
+            <div><input type="text" id="inputFetch"></div>
+            <div><input type="button" id="fetchSearchClick" value="Fetchを検索します"></div>
+            <div id="fetchUrlTitle">Fetch</div>
         </article>
         <script src="../js/AsyncTest.js"></script>
     </main>
