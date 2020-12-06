@@ -223,18 +223,34 @@ document.getElementById("postSearchClick").addEventListener("click", function(){
     xhr.send();
 },false);
 
-document.getElementById('fetchSearchClick').addEventListener('click', function (e) {
-    fetch('https://iss.ndl.go.jp/api/opensearch?cnt=10&title=空',{
-        method: "GET",
-        mode: "cors",
-        credentials: 'include'})
-    .then(function(text){
-        document.getElementById('fetchUrlTitle').textContent = text;
-    })
-      .then(function (response) {
-        return response.text();
+// document.getElementById('fetchSearchClick').addEventListener('click', function (e) {
+//     fetch('https://iss.ndl.go.jp/api/opensearch?cnt=10&title=空',{
+//         method: "GET",
+//         mode: "cors",
+//         credentials: 'include'})
+//     .then(function(text){
+//         document.getElementById('fetchUrlTitle').textContent = text;
+//     })
+//       .then(function (response) {
+//         return response.text();
+//       })
+//       .then(function (data) {
+//         document.getElementById('fetchUrlTitle').textContent = data;
+//       });
+//   }, false);
+
+  document.getElementById("fetchSearchClick").addEventListener("click", function(){
+      fetch("http://api.e-stat.go.jp/rest/3.0/app/json/getStatsData?appId=7dbb7be0163baf74f41882d0a5f1f75b5353b626&lang=J&statsDataId=0003412313&metaGetFlg=Y&cntGetFlg=N&explanationGetFlg=Y&annotationGetFlg=Y&sectionHeaderFlg=1", {
+          method: "GET",
+          mode: "cors",
+      })
+      .then(function(response){
+        console.log("status=" + response1.status); //status=200
+        return response1.json();
+        //document.getElementById("fetchUrlTitle").textContent = response.json();
       })
       .then(function (data) {
+        console.log(JSON.stringify(data1)); //JSONを出力
         document.getElementById('fetchUrlTitle').textContent = data;
-      });
+      })
   }, false);
