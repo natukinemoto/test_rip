@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/Base.css">
+    <link rel="stylesheet" href="../css/Population.css">
+    <title>人口推移</title>
+</head>
+
+<body>
+    <header>
+        <!-- ヘッダー内タイトル表示 -->
+        <ul class="Header_lists" id="Header_btn">
+            <li class="Header_lists_leftChild" id="Header_btn_leftChild">Mainmenu</li>
+            <li class="Header_lists_rightChild" id="Header_btn_rightChild1">RateCalculation<span id="Id_border_child1" class="Border_transform"></span></li>
+            <li class="Header_lists_rightChild" id="Header_btn_rightChild2">BaseBall<span id="Id_border_child2" class="Border_transform"></span></li>
+            <li class="Header_lists_rightChild" id="Header_btn_rightChild3">BaseBallBattle<span id="Id_border_child3" class="Border_transform"></span></li>
+            <li class="Header_lists_rightChild" id="Header_btn_rightChild4">RateCalculation&nbsp;v1.1<span id="Id_border_child4" class="Border_transform"></span></li>
+        </ul>
+        <script src="../js/PageShift.js"></script>
+        <script src="../js/Base.js"></script>
+    </header>
+
+    <main>
+        <span id="id_border_adult" class="Border_transform_adult"></span>
+        <article>
+            <!--<div><input type="button" id="clickPullDownBtn" value="プルダウン作成ボタン"></div>-->
+
+            <ul>
+                <br>
+                <form name="formPopulation">
+                    <li><input type="radio" name="radioPopulation" value="000" checked>全選択</li>
+                    <li><input type="radio" name="radioPopulation" value="002">男</li>
+                    <li><input type="radio" name="radioPopulation" value="003">女</li>
+                    <li><input type="radio" name="radioPopulation" value="001">男女総合</li>
+                    <li><input type="radio" name="radioPopulation" value="004">人口性比</li>
+                </form>
+                <br>
+                <form name="formRace">
+                    <li><input type="radio" name="radioRace" value="000" checked>全選択</li>
+                    <li><input type="radio" name="radioRace" value="001">総人口</li>
+                    <li><input type="radio" name="radioRace" value="002">日本人(のみ)人口</li>
+                </form>
+                <br>
+                <form id="formAge">
+                    <select name="selectAge" multiple>
+                        <option checked>年齢選択(複数選択可)</option>
+                    </select>
+                </form>
+                <br>
+            </ul>
+
+            <div><input type="button" id="clickBtn" value="検索ボタン"></div>
+        </article>
+        <script src="../js/Population.js"></script>
+    </main>
+
+    <div class="Body_lists">
+    </div>
+    <footer>
+        <div class="Footer_lists">
+            <div class="Footer_lists_main">
+                🄫 All rights reserved 2020 natsuki.nemoto
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
