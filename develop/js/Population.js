@@ -35,7 +35,7 @@ function GetPopulation(){
     var raceCheck = FormRaceCheck();
     var populationCheck = FormPopulationCheck();
 
-    fetch("http://api.e-stat.go.jp/rest/3.0/app/json/getStatsData?appId=7dbb7be0163baf74f41882d0a5f1f75b5353b626&lang=J&statsDataId=0003412313&metaGetFlg=Y&cntGetFlg=N&explanationGetFlg=Y&annotationGetFlg=Y&sectionHeaderFlg=1", {
+    fetch("http://api.e-stat.go.jp/rest/3.0/app/json/getStatsData?appId=c580619790e91b145dfdf850813329254475c4e4&lang=J&statsDataId=0003412313&metaGetFlg=Y&cntGetFlg=N&explanationGetFlg=Y&annotationGetFlg=Y&sectionHeaderFlg=1", {
         method: "GET",//デフォルト値はGET
         mode: "cors",
     })
