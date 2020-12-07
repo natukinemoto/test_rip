@@ -1,0 +1,32 @@
+table {
+    width: auto;
+    border-right: 1px solid white;
+    border-bottom: 1px solid white;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+th,td {
+        display: block;
+        width: auto;
+        padding: 1em;
+        text-align: center;
+        border-top: 1px solid white;
+        border-left: 1px solid white;
+        background-color: white;
+}
+thead {
+    display: flex;
+    float: left;
+}
+thead th:first-child:before {
+   content: ' ';
+   padding: 1em;
+}
+tbody {
+    display: flex;
+    width: auto;
+}
+tbody tr {
+    display: flex;
+    flex-direction: column;
+}
