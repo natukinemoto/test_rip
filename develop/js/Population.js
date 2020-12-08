@@ -302,6 +302,7 @@ function FormRaceCheck(){
     return raceCheck;
 }
 
+// if分で分岐をさせるとめちゃくちゃ重くなる
 // プルダウンの実行
 // 読み込みに大量のメモリが消費されてクラッシュする
 // window.addEventListener("load", function(){
@@ -361,16 +362,31 @@ function RemoveElement(){
     }
 }
 
+// プルダウンの作成実行
 window.onload = function(){
     CreatePullDownMenu();
 }
 
+// プルダウンの作成
 function CreatePullDownMenu(){
-    for (var i = 0;i <= 100;i++){
+    var option = document.createElement("option");
+    option.setAttribute("value",("000" + 0).slice(-3));
+    option.setAttribute("selected","0");
+    option.appendChild(document.createTextNode("総数"));
+    formAge.selectAge.appendChild(option);
+
+    // ループ中にif文で分岐させると重くなる
+    for (var i = 1;i <= 100;i++){
         var option = document.createElement("option");
         option.setAttribute("value",("000" + i).slice(-3));
         option.setAttribute("selected",i);
-        option.appendChild(document.createTextNode(i.toString() + "歳"));
+        option.appendChild(document.createTextNode(i - 1 + "歳"));
         formAge.selectAge.appendChild(option);
     }
+
+    var option = document.createElement("option");
+    option.setAttribute("value",("000" + 101).slice(-3));
+    option.setAttribute("selected","100");
+    option.appendChild(document.createTextNode("100歳以上"));
+    formAge.selectAge.appendChild(option);
 }
