@@ -1,0 +1,10 @@
+{
+    "title":"ExcelMailSendHelper",
+
+    "geometry":"460x300",
+    
+    "icon":{
+        "folderName":"icon",
+        "fileName":"mail@3x.png"
+    }
+}

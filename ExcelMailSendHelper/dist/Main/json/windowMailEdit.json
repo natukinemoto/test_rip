@@ -1,0 +1,10 @@
+{
+    "title":"メール設定編集",
+
+    "geometry":"700x860",
+    
+    "icon":{
+        "folderName":"icon",
+        "fileName":"mail@3x.png"
+    }
+}
