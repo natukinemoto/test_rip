@@ -1,0 +1,18 @@
+{
+    "smtpHost": "smtp.gmail.com",
+    "smtpPort": "465",
+    "userName": "TestTaro_ocr@gmail.com",
+    "password": "qwerty",
+    "fromAddress": "TestTaro_ocr@gmail.com",
+    "toAddress": [
+        "Company_01234@gmail.com"
+    ],
+    "cc": [
+        "Company_56789@gmail.com"
+    ],
+    "bcc": [
+        "Company_Test@gmail.com"
+    ],
+    "subject": "【月末書類】〇月作業分【OCR根本夏樹】",
+    "body": "お疲れ様です。OCRの田中です。\n\n月末書類を添付いたしましたので、ご確認をよろしくお願いします。"
+}
