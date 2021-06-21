@@ -76,14 +76,16 @@ class ExcelHelper:
         dirName = os.getcwd()
         path = Const().get_excelHelperCopySavePath()
         save_CopySaveFilePath = os.path.join(dirName, *path)
-        os.remove(save_CopySaveFilePath)
+        if(os.path.isfile(save_CopySaveFilePath) == True):
+            os.remove(save_CopySaveFilePath)
         excelBook.save(save_CopySaveFilePath)
     # 編集済みデータ保存
     def save_CompleteSaveFile(self, excelBook):
         dirName = os.getcwd()
         path = Const().get_excelHelperCompleteSavePath()
         save_CompleteSaveFilePath = os.path.join(dirName, *path)
-        os.remove(save_CompleteSaveFilePath)
+        if(os.path.isfile(save_CompleteSaveFilePath) == True):
+            os.remove(save_CompleteSaveFilePath)
         excelBook.save(save_CompleteSaveFilePath)
     # 編集途中のデータ保存
     def save_temporarySaveFile(self, excelBook, filePath):
